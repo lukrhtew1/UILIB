@@ -1,0 +1,698 @@
+
+local TweenService = game:GetService("TweenService")
+local UserInputService = game:GetService("UserInputService")
+local runService = game:GetService("RunService")
+local Players = game:GetService("Players")
+local LocalPlayer = Players.LocalPlayer
+
+function CreateMainFrame()
+
+	local moon = Instance.new("ScreenGui")
+	moon.IgnoreGuiInset = false
+	moon.ResetOnSpawn = false
+	moon.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+	moon.Name = "Moon"
+	moon.Parent = game.Players.LocalPlayer.PlayerGui
+
+	local main_window = Instance.new("Frame")
+	main_window.BackgroundColor3 = Color3.new(0.0627451, 0.0627451, 0.0980392)
+	main_window.Position = UDim2.new(0.0931376815, 0, 0.381707311, 0)
+	main_window.Size = UDim2.new(0, 721, 0, 415)
+	main_window.Visible = true
+	main_window.Name = "MainWindow"
+	main_window.Parent = moon
+	main_window.ZIndex = 9999
+
+	local seperator_tab = Instance.new("Frame")
+	seperator_tab.BackgroundColor3 = Color3.new(0.403922, 0.403922, 0.403922)
+	seperator_tab.Position = UDim2.new(0.29126215, 0, 0.0602409653, 0)
+	seperator_tab.Size = UDim2.new(0, 1, 0, 379)
+	seperator_tab.Visible = true
+	seperator_tab.Name = "SeperatorTab"
+	seperator_tab.Parent = main_window
+
+	local uicorner = Instance.new("UICorner")
+	uicorner.CornerRadius = UDim.new(0, 15)
+	uicorner.Parent = main_window
+
+	local uistroke = Instance.new("UIStroke")
+	uistroke.Color = Color3.new(0.490196, 0.490196, 0.741176)
+	uistroke.Parent = main_window
+
+	local seperatorscripts = Instance.new("Frame")
+	seperatorscripts.BackgroundColor3 = Color3.new(0.403922, 0.403922, 0.403922)
+	seperatorscripts.Position = UDim2.new(0.674063802, 0, 0.0433734953, 0)
+	seperatorscripts.Size = UDim2.new(0, 1, 0, 379)
+	seperatorscripts.Visible = true
+	seperatorscripts.Name = "SeperatorScripts"
+	seperatorscripts.Parent = main_window
+
+	local left_section = Instance.new("Frame")
+	left_section.BackgroundColor3 = Color3.new(1, 1, 1)
+	left_section.BackgroundTransparency = 1
+	left_section.Size = UDim2.new(0, 211, 0, 415)
+	left_section.Visible = true
+	left_section.Name = "LeftSection"
+	left_section.Parent = main_window
+
+	local uicorner_2 = Instance.new("UICorner")
+	uicorner_2.Parent = left_section
+
+	local tab_holder = Instance.new("ScrollingFrame")
+	tab_holder.ScrollBarImageColor3 = Color3.new(0, 0, 0)
+	tab_holder.ScrollBarThickness = 0
+	tab_holder.Active = true
+	tab_holder.BackgroundColor3 = Color3.new(1, 1, 1)
+	tab_holder.BackgroundTransparency = 1
+	tab_holder.Position = UDim2.new(0, 0, 0.151807234, 0)
+	tab_holder.Size = UDim2.new(0, 198, 0, 309)
+	tab_holder.Visible = true
+	tab_holder.Name = "TabHolder"
+	tab_holder.Parent = left_section
+
+	local uilist_layout = Instance.new("UIListLayout")
+	uilist_layout.SortOrder = Enum.SortOrder.LayoutOrder
+	uilist_layout.Parent = tab_holder
+
+	local uipadding = Instance.new("UIPadding")
+	uipadding.PaddingLeft = UDim.new(0, 35)
+	uipadding.Parent = tab_holder
+
+	local title = Instance.new("TextLabel")
+	title.Font = Enum.Font.FredokaOne
+	title.Text = "Moon Client"
+	title.TextColor3 = Color3.new(0.368627, 0.368627, 0.552941)
+	title.TextSize = 27
+	title.TextXAlignment = Enum.TextXAlignment.Left
+	title.BackgroundColor3 = Color3.new(1, 1, 1)
+	title.BackgroundTransparency = 1
+	title.Position = UDim2.new(0.115242787, 0, 0.0433734953, 0)
+	title.Size = UDim2.new(0, 196, 0, 39)
+	title.Visible = true
+	title.Name = "Title"
+	title.Parent = left_section
+
+	local right_section = Instance.new("Frame")
+	right_section.BackgroundColor3 = Color3.new(1, 1, 1)
+	right_section.BackgroundTransparency = 1
+	right_section.Position = UDim2.new(0.29264909, 0, 0.0433734953, 0)
+	right_section.Size = UDim2.new(0, 276, 0, 386)
+	right_section.Visible = true
+	right_section.Name = "RightSection"
+	right_section.Parent = main_window
+
+	local text_description = Instance.new("TextLabel")
+	text_description.Font = Enum.Font.SourceSansBold
+	text_description.Text = "Cool text down below ;-)"
+	text_description.TextColor3 = Color3.new(0.411765, 0.403922, 0.584314)
+	text_description.TextSize = 14
+	text_description.TextTransparency = 1
+	text_description.TextXAlignment = Enum.TextXAlignment.Left
+	text_description.BackgroundColor3 = Color3.new(1, 1, 1)
+	text_description.BackgroundTransparency = 1
+	text_description.Position = UDim2.new(0.0554935634, 0, 0.93264246, 0)
+	text_description.Size = UDim2.new(0, 257, 0, 19)
+	text_description.Visible = true
+	text_description.Name = "TextDescription"
+	text_description.Parent = right_section
+
+	local further_right_section = Instance.new("Frame")
+	further_right_section.BackgroundColor3 = Color3.new(1, 1, 1)
+	further_right_section.BackgroundTransparency = 1
+	further_right_section.Position = UDim2.new(0.675450742, 0, 0.0433734953, 0)
+	further_right_section.Size = UDim2.new(0, 227, 0, 386)
+	further_right_section.Visible = true
+	further_right_section.Name = "FurtherRightSection"
+	further_right_section.Parent = main_window
+
+	local array_list = Instance.new("Frame")
+	array_list.BackgroundColor3 = Color3.new(1, 1, 1)
+	array_list.BackgroundTransparency = 1
+	array_list.BorderColor3 = Color3.new(0.105882, 0.164706, 0.207843)
+	array_list.Position = UDim2.new(0.734, 0,-0, 0)
+	array_list.Size = UDim2.new(0, 208, 0, 202)
+	array_list.Visible = true
+	array_list.ZIndex = 100
+	array_list.Name = "ArrayList"
+	array_list.Parent = moon
+
+	local array_title_half_moon = Instance.new("ImageLabel")
+	array_title_half_moon.Image = "rbxassetid://9027816797"
+	array_title_half_moon.ImageColor3 = Color3.new(0.647059, 0.647059, 0.972549)
+	array_title_half_moon.BackgroundColor3 = Color3.new(1, 1, 1)
+	array_title_half_moon.BackgroundTransparency = 1
+	array_title_half_moon.Position = UDim2.new(0.0811533928, 0, 0.0654454753, 0)
+	array_title_half_moon.Size = UDim2.new(0, 112, 0, 115)
+	array_title_half_moon.Visible = true
+	array_title_half_moon.ZIndex = 100
+	array_title_half_moon.Name = "ArrayTitleHalfMoon"
+	array_title_half_moon.Parent = array_list
+
+	local array_layout = Instance.new("Frame")
+	array_layout.BackgroundColor3 = Color3.new(1, 1, 1)
+	array_layout.BackgroundTransparency = 1
+	array_layout.Position = UDim2.new(0.0336538479, 0, 0.63861388, 0)
+	array_layout.Size = UDim2.new(0, 279, 0, 623)
+	array_layout.Visible = true
+	array_layout.ZIndex = 100
+	array_layout.Name = "ArrayLayout"
+	array_layout.Parent = array_list
+
+	local uilist_layout_4 = Instance.new("UIListLayout")
+	uilist_layout_4.SortOrder = Enum.SortOrder.LayoutOrder
+	uilist_layout_4.Parent = array_layout
+
+	local uipadding_4 = Instance.new("UIPadding")
+	uipadding_4.PaddingLeft = UDim.new(0, 20)
+	uipadding_4.Parent = array_layout
+
+	local array_title_full_moon = Instance.new("ImageLabel")
+	array_title_full_moon.Image = "rbxassetid://9013579429"
+	array_title_full_moon.ImageColor3 = Color3.new(0.647059, 0.647059, 0.972549)
+	array_title_full_moon.ImageTransparency = 1
+	array_title_full_moon.BackgroundColor3 = Color3.new(1, 1, 1)
+	array_title_full_moon.BackgroundTransparency = 1
+	array_title_full_moon.Position = UDim2.new(0.0763456821, 0, 0.0802969635, 0)
+	array_title_full_moon.Size = UDim2.new(0, 112, 0, 115)
+	array_title_full_moon.Visible = true
+	array_title_full_moon.ZIndex = 100
+	array_title_full_moon.Name = "ArrayTitleFullMoon"
+	array_title_full_moon.Parent = array_list
+
+	-- Dragify --
+
+	local gui = main_window
+
+	local dragging
+	local dragInput
+	local dragStart
+	local startPos
+
+	local function Lerp(a, b, m)
+		return a + (b - a) * m
+	end;
+
+	local lastMousePos
+	local lastGoalPos
+	local DRAG_SPEED = (12);
+
+	local function Update(dt)
+		if not (startPos) then return end;
+		if not (dragging) and (lastGoalPos) then
+			gui.Position = UDim2.new(startPos.X.Scale, Lerp(gui.Position.X.Offset, lastGoalPos.X.Offset, dt * DRAG_SPEED), startPos.Y.Scale, Lerp(gui.Position.Y.Offset, lastGoalPos.Y.Offset, dt * DRAG_SPEED))
+			return 
+		end;
+
+		local delta = (lastMousePos - UserInputService:GetMouseLocation())
+		local xGoal = (startPos.X.Offset - delta.X);
+		local yGoal = (startPos.Y.Offset - delta.Y);
+		lastGoalPos = UDim2.new(startPos.X.Scale, xGoal, startPos.Y.Scale, yGoal)
+		gui.Position = UDim2.new(startPos.X.Scale, Lerp(gui.Position.X.Offset, xGoal, dt * DRAG_SPEED), startPos.Y.Scale, Lerp(gui.Position.Y.Offset, yGoal, dt * DRAG_SPEED))
+	end;
+
+	gui.InputBegan:Connect(function(input)
+		if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
+			dragging = true
+			dragStart = input.Position
+			startPos = gui.Position
+			lastMousePos = UserInputService:GetMouseLocation()
+
+			input.Changed:Connect(function()
+				if input.UserInputState == Enum.UserInputState.End then
+					dragging = false
+				end
+			end)
+		end
+	end)
+
+	gui.InputChanged:Connect(function(input)
+		if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
+			dragInput = input
+		end
+	end)
+
+	main_window.MouseLeave:Connect(function()
+		for i , gettrans in pairs(main_window:GetDescendants()) do
+
+			TweenService:Create(main_window, TweenInfo.new(0.5), {['BackgroundTransparency'] = 0.5}):Play()
+
+			if gettrans:IsA("Frame") and gettrans.Name then
+				if gettrans.Name == "RightSection" or gettrans.Name == "LeftSection" or gettrans.Name == "FurtherRightSection" or gettrans.Name == "Color" or gettrans.Name == "ToggleSetting" then
+
+				else
+					TweenService:Create(gettrans, TweenInfo.new(0.5), {['BackgroundTransparency'] = 0.5}):Play()
+				end
+			elseif gettrans:IsA("ImageLabel") or gettrans:IsA("ImageButton") then
+				TweenService:Create(gettrans, TweenInfo.new(0.5), {['ImageTransparency'] = 0.5}):Play()
+			end
+
+		end
+
+	end)
+
+	main_window.MouseEnter:Connect(function()
+		for i , gettrans in pairs(main_window:GetDescendants()) do
+
+			TweenService:Create(main_window, TweenInfo.new(0.5), {['BackgroundTransparency'] = 0}):Play()
+
+			if gettrans:IsA("Frame") and gettrans.Name then
+				if gettrans.Name == "RightSection" or gettrans.Name == "LeftSection" or gettrans.Name == "FurtherRightSection" or gettrans.Name == "Color" or gettrans.Name == "ToggleSetting" or gettrans.Name == "TypingBox" then
+
+				else
+					TweenService:Create(gettrans, TweenInfo.new(0.5), {['BackgroundTransparency'] = 0}):Play()
+				end
+			elseif gettrans:IsA("ImageLabel") or gettrans:IsA("ImageButton") then
+				TweenService:Create(gettrans, TweenInfo.new(0.5), {['ImageTransparency'] = 0}):Play()
+			end
+
+		end
+
+	end)
+
+	local Closed = false
+
+	game:GetService("UserInputService").InputBegan:Connect(function(input)
+		if input == Enum.KeyCode.Tab then
+			if Closed == false then
+				main_window.Visible = false
+				Closed = true
+			else
+				main_window.Visible = true
+				Closed = false
+			end
+		end
+	end)
+
+	runService.Heartbeat:Connect(Update)
+
+	function addArray(Name, Type)
+
+		if Type == "Add" then
+			local array_text = Instance.new("TextLabel")
+			array_text.Font = Enum.Font.Unknown
+			array_text.Text = Name
+			array_text.TextColor3 = Color3.new(1, 1, 1)
+			array_text.TextSize = 25
+			array_text.TextXAlignment = Enum.TextXAlignment.Left
+			array_text.BackgroundColor3 = Color3.new(1, 1, 1)
+			array_text.BackgroundTransparency = 1
+			array_text.Position = UDim2.new(1.02702701, 0, 0.0272873193, 0)
+			array_text.Size = UDim2.new(0, 168, 0, 32)
+			array_text.Visible = true
+			array_text.ZIndex = 100
+			array_text.Name = Name
+			array_text.Parent = array_layout
+
+			local arrayaccent = Instance.new("Frame")
+			arrayaccent.BackgroundColor3 = Color3.new(1, 1, 1)
+			arrayaccent.BorderSizePixel = 0
+			arrayaccent.Position = UDim2.new(-0.065476194, 0, 0.09375, 0)
+			arrayaccent.Size = UDim2.new(0, 2, 0, 26)
+			arrayaccent.Visible = true
+			arrayaccent.Name = "ArrayAccent"
+			arrayaccent.Parent = array_text
+		elseif Type == "Remove" then
+			array_layout:FindFirstChild(Name):Destroy()
+		end
+
+	end
+
+	function CreateNewTab(Name, HoldingParent)
+
+		local tab_button = Instance.new("TextButton")
+		tab_button.Font = Enum.Font.Nunito
+		tab_button.Text = Name
+		tab_button.TextColor3 = Color3.new(0.423529, 0.423529, 0.423529)
+		tab_button.TextSize = 25
+		tab_button.TextXAlignment = Enum.TextXAlignment.Left
+		tab_button.BackgroundColor3 = Color3.new(1, 1, 1)
+		tab_button.BackgroundTransparency = 1
+		tab_button.Position = UDim2.new(0.0585106388, 0, 0, 0)
+		tab_button.Size = UDim2.new(0, 176, 0, 50)
+		tab_button.Visible = true
+		tab_button.Name = "TabButton"
+		tab_button.Parent = tab_holder
+
+		local accent = Instance.new("Frame")
+		accent.BackgroundColor3 = Color3.new(0.211765, 0.211765, 0.317647)
+		accent.BorderSizePixel = 0
+		accent.Position = UDim2.new(-0.0568181798, 0, 0.239999995, 0)
+		accent.Size = UDim2.new(0, 2, 0, 25)
+		accent.Visible = true
+		accent.Name = "Accent"
+		accent.Parent = tab_button
+
+		local scripts_frame = Instance.new("ScrollingFrame")
+		scripts_frame.ScrollBarThickness = 0
+		scripts_frame.Active = true
+		scripts_frame.AnchorPoint = Vector2.new(0.5, 0.5)
+		scripts_frame.BackgroundColor3 = Color3.new(1, 1, 1)
+		scripts_frame.BackgroundTransparency = 1
+		scripts_frame.BorderSizePixel = 0
+		scripts_frame.Position = UDim2.new(0.494806468, 0, 0.501204908, 0)
+		scripts_frame.Size = UDim2.new(0, 257, 0, 308)
+		scripts_frame.Visible = true
+		scripts_frame.Name = Name .. "ScriptsFrame"
+		scripts_frame.Parent = right_section
+
+		local uilist_layout_2 = Instance.new("UIListLayout")
+		uilist_layout_2.SortOrder = Enum.SortOrder.LayoutOrder
+		uilist_layout_2.Parent = scripts_frame
+
+		local uipadding_2 = Instance.new("UIPadding")
+		uipadding_2.PaddingLeft = UDim.new(0, 20)
+		uipadding_2.Parent = scripts_frame
+
+		local uiscale = Instance.new("UIScale")
+		uiscale.Scale = 0
+		uiscale.Parent = scripts_frame
+
+		local TabPressed = false
+		local TabPressDeb = false
+
+		tab_button.MouseButton1Down:Connect(function()
+			if not TabPressed and not TabPressDeb then
+
+				TweenService:Create(tab_button, TweenInfo.new(0.2), {['TextColor3'] = Color3.fromRGB(94, 94, 141)}):Play()
+				TweenService:Create(scripts_frame.UIScale, TweenInfo.new(0.2), {['Scale'] = 1}):Play()
+				accent:TweenPosition(UDim2.new(-0.125, 0,0.24, 0), "Out", "Sine", 0.2)
+				TabPressed = true
+
+				TabPressDeb = true
+				task.wait(0.5)
+				TabPressDeb = false
+
+			elseif not TabPressDeb then
+				TweenService:Create(tab_button, TweenInfo.new(0.2), {['TextColor3'] = Color3.fromRGB(71, 71, 71)}):Play()
+				TweenService:Create(scripts_frame.UIScale, TweenInfo.new(0.2), {['Scale'] = 0}):Play()
+				accent:TweenPosition(UDim2.new(-0.057, 0,0.24, 0), "Out", "Sine", 0.2)
+				TabPressed = false
+
+				TabPressDeb = true
+				task.wait(0.5)
+				TabPressDeb = false
+			end
+		end)
+
+	end
+
+	function CreateNewButton(Name, HoverText, ScriptsFrame, Detection, Callback)
+
+		Callback = Callback or function() end
+
+		local script_button = Instance.new("TextButton")
+		script_button.Font = Enum.Font.Nunito
+		script_button.Text = Name
+		script_button.TextColor3 = Color3.new(0.423529, 0.423529, 0.423529)
+		script_button.TextSize = 25
+		script_button.TextWrapped = true
+		script_button.TextXAlignment = Enum.TextXAlignment.Left
+		script_button.BackgroundColor3 = Color3.new(1, 1, 1)
+		script_button.BackgroundTransparency = 1
+		script_button.BorderColor3 = Color3.new(0.105882, 0.164706, 0.207843)
+		script_button.Size = UDim2.new(0, 245, 0, 50)
+		script_button.Visible = true
+		script_button.Name = Name
+		script_button.Parent = ScriptsFrame
+
+		local detection_level = Instance.new("TextLabel")
+		detection_level.Font = Enum.Font.SourceSans
+		detection_level.Text = Detection
+		detection_level.TextColor3 = Color3.new(0.423529, 0.423529, 0.423529)
+		detection_level.TextSize = 14
+		detection_level.TextXAlignment = Enum.TextXAlignment.Left
+		detection_level.BackgroundColor3 = Color3.new(1, 1, 1)
+		detection_level.BackgroundTransparency = 1
+		detection_level.Position = UDim2.new(0, 0, 0.779999971, 0)
+		detection_level.Size = UDim2.new(0, 73, 0, 11)
+		detection_level.Visible = true
+		detection_level.Name = "DetectionLevel"
+		detection_level.Parent = script_button
+
+		local color = Instance.new("Frame")
+		color.BackgroundColor3 = Color3.new(0.211765, 0.211765, 0.317647)
+		color.BackgroundTransparency = 1
+		color.BorderColor3 = Color3.new(0.105882, 0.164706, 0.207843)
+		color.BorderSizePixel = 0
+		color.Position = UDim2.new(0.956192195, 0, 0.239999995, 0)
+		color.Size = UDim2.new(0, 2, 0, 25)
+		color.Visible = true
+		color.Name = "Color"
+		color.Parent = script_button
+
+		local uicorner_3 = Instance.new("UICorner")
+		uicorner_3.CornerRadius = UDim.new(0, 100)
+		uicorner_3.Parent = color
+
+		local settings_frame = Instance.new("ScrollingFrame")
+		settings_frame.ScrollBarThickness = 0
+		settings_frame.Active = true
+		settings_frame.AnchorPoint = Vector2.new(0.5, 0.5)
+		settings_frame.BackgroundColor3 = Color3.new(1, 1, 1)
+		settings_frame.BackgroundTransparency = 1
+		settings_frame.BorderSizePixel = 0
+		settings_frame.Position = UDim2.new(0.520300388, 0, 0.490842164, 0)
+		settings_frame.Size = UDim2.new(0, 214, 0, 308)
+		settings_frame.Visible = true
+		settings_frame.Name = Name .. "Settings"
+		settings_frame.Parent = further_right_section
+
+		local uiscale_2 = Instance.new("UIScale")
+		uiscale_2.Scale = 0
+		uiscale_2.Parent = settings_frame
+
+		local uipadding_3 = Instance.new("UIPadding")
+		uipadding_3.Parent = settings_frame
+
+		local uilist_layout_3 = Instance.new("UIListLayout")
+		uilist_layout_3.Padding = UDim.new(0, 15)
+		uilist_layout_3.SortOrder = Enum.SortOrder.LayoutOrder
+		uilist_layout_3.Parent = settings_frame
+
+		local ScriptButtonClicked = false
+		local ScriptButtonClickedDeb = false
+
+		script_button.MouseButton1Down:Connect(function()
+
+			if not ScriptButtonClicked and not ScriptButtonClickedDeb then
+
+				TweenService:Create(script_button, TweenInfo.new(0.3), {['TextColor3'] = Color3.fromRGB(94, 94, 141)}):Play()
+				TweenService:Create(detection_level, TweenInfo.new(0.3), {['TextColor3'] = Color3.fromRGB(94, 94, 141)}):Play()
+				TweenService:Create(color, TweenInfo.new(0.3), {['BackgroundTransparency'] = 0}):Play()
+				color:TweenPosition(UDim2.new(0.944, 0,0.24, 0), "Out", "Sine", 0.3)
+				ScriptButtonClicked = true
+				ScriptButtonClickedDeb = true
+				task.wait(0.5)
+				ScriptButtonClickedDeb = false
+
+				pcall(Callback)
+
+			elseif not ScriptButtonClickedDeb then
+
+				TweenService:Create(script_button, TweenInfo.new(0.3), {['TextColor3'] = Color3.fromRGB(108, 108, 108)}):Play()
+				TweenService:Create(detection_level, TweenInfo.new(0.3), {['TextColor3'] = Color3.fromRGB(108, 108, 108)}):Play()
+				TweenService:Create(color, TweenInfo.new(0.3), {['BackgroundTransparency'] = 1}):Play()
+				ScriptButtonClicked = false
+				ScriptButtonClickedDeb = true
+				task.wait(0.5)
+				ScriptButtonClickedDeb = false
+
+				pcall(Callback)
+			end
+		end)
+
+		script_button.MouseEnter:Connect(function()
+			text_description.Text = HoverText
+			TweenService:Create(text_description, TweenInfo.new(0.2), {['TextTransparency'] = 0}):Play()
+		end)
+
+		script_button.MouseLeave:Connect(function()
+			TweenService:Create(text_description, TweenInfo.new(0.2), {['TextTransparency'] = 1}):Play()
+		end)
+
+		local SettingsButtonClicked = false
+
+		script_button.MouseButton2Down:Connect(function()
+			if not SettingsButtonClicked then
+
+				if ScriptButtonClicked then
+					TweenService:Create(settings_frame.UIScale, TweenInfo.new(0.2), {['Scale'] = 1}):Play()
+					color:TweenPosition(UDim2.new(0.777, 0,0.24, 0), "Out", "Sine", 0.3)
+					SettingsButtonClicked = true
+				else
+					TweenService:Create(settings_frame.UIScale, TweenInfo.new(0.2), {['Scale'] = 1}):Play()
+					TweenService:Create(script_button, TweenInfo.new(0.3), {['TextColor3'] = Color3.fromRGB(50, 50, 75)}):Play()
+					TweenService:Create(detection_level, TweenInfo.new(0.3), {['TextColor3'] = Color3.fromRGB(50, 50, 75)}):Play()
+				end
+
+				SettingsButtonClicked = true
+
+			else
+				if ScriptButtonClicked then
+					TweenService:Create(settings_frame.UIScale, TweenInfo.new(0.2), {['Scale'] = 0}):Play()
+					color:TweenPosition(UDim2.new(0.944, 0,0.24, 0), "Out", "Sine", 0.3)
+				else
+					TweenService:Create(settings_frame.UIScale, TweenInfo.new(0.2), {['Scale'] = 0}):Play()
+					TweenService:Create(script_button, TweenInfo.new(0.3), {['TextColor3'] = Color3.fromRGB(71, 71, 71)}):Play()
+					TweenService:Create(detection_level, TweenInfo.new(0.3), {['TextColor3'] = Color3.fromRGB(71, 71, 71)}):Play()
+				end
+
+				SettingsButtonClicked = false
+			end
+		end)
+
+	end
+
+	function CreateSetting(Type, ScriptHolder, Name, Callback)
+
+		if Type == "Toggle" then
+
+			local toggle_setting = Instance.new("Frame")
+			toggle_setting.BackgroundColor3 = Color3.new(1, 1, 1)
+			toggle_setting.BackgroundTransparency = 1
+			toggle_setting.Position = UDim2.new(-2.79629636, 0, 0.274016559, 0)
+			toggle_setting.Size = UDim2.new(0, 197, 0, 21)
+			toggle_setting.Visible = true
+			toggle_setting.Name = "ToggleSetting"
+			toggle_setting.Parent = ScriptHolder
+
+			local toggle_setting_btn = Instance.new("TextButton")
+			toggle_setting_btn.Font = Enum.Font.SourceSans
+			toggle_setting_btn.Text = ""
+			toggle_setting_btn.TextColor3 = Color3.new(0, 0, 0)
+			toggle_setting_btn.TextSize = 14
+			toggle_setting_btn.BackgroundColor3 = Color3.new(0.294118, 0.239216, 0.705882)
+			toggle_setting_btn.BackgroundTransparency = 1
+			toggle_setting_btn.Position = UDim2.new(0.799929976, 0, 0.238095239, 0)
+			toggle_setting_btn.Size = UDim2.new(0, 39, 0, 21)
+			toggle_setting_btn.Visible = true
+			toggle_setting_btn.Name = "ToggleSettingBtn"
+			toggle_setting_btn.Parent = toggle_setting
+
+			local uicorner_4 = Instance.new("UICorner")
+			uicorner_4.CornerRadius = UDim.new(0.5, 0)
+			uicorner_4.Parent = toggle_setting_btn
+
+			local uistroke_2 = Instance.new("UIStroke")
+			uistroke_2.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+			uistroke_2.Color = Color3.new(0.184314, 0.184314, 0.184314)
+			uistroke_2.Parent = toggle_setting_btn
+
+			local inner_slider_toggle = Instance.new("Frame")
+			inner_slider_toggle.BackgroundColor3 = Color3.new(0.407843, 0.407843, 0.407843)
+			inner_slider_toggle.Position = UDim2.new(0.0648178309, 0, 0.142857149, 0)
+			inner_slider_toggle.Size = UDim2.new(0, 14, 0, 14)
+			inner_slider_toggle.Visible = true
+			inner_slider_toggle.Name = "InnerSliderToggle"
+			inner_slider_toggle.Parent = toggle_setting_btn
+
+			local uicorner_5 = Instance.new("UICorner")
+			uicorner_5.CornerRadius = UDim.new(0.5, 0)
+			uicorner_5.Parent = inner_slider_toggle
+
+			local toggletext = Instance.new("TextLabel")
+			toggletext.Font = Enum.Font.SourceSansBold
+			toggletext.Text = Name
+			toggletext.TextColor3 = Color3.new(0.423529, 0.423529, 0.423529)
+			toggletext.TextSize = 17
+			toggletext.TextXAlignment = Enum.TextXAlignment.Left
+			toggletext.BackgroundColor3 = Color3.new(1, 1, 1)
+			toggletext.BackgroundTransparency = 1
+			toggletext.Position = UDim2.new(-3.84615374, 0, -0.0476190448, 0)
+			toggletext.Size = UDim2.new(0, 137, 0, 21)
+			toggletext.Visible = true
+			toggletext.Name = "ToggleText"
+			toggletext.Parent = toggle_setting_btn
+
+			local SettingToggle = false
+			local SettingToggleDeb = false
+
+			toggle_setting_btn.MouseButton1Down:Connect(function()
+				if not SettingToggle and not SettingToggleDeb then
+
+					TweenService:Create(toggle_setting_btn, TweenInfo.new(0.3), {['BackgroundTransparency'] = 0}):Play()
+					TweenService:Create(inner_slider_toggle, TweenInfo.new(0.3), {['BackgroundColor3'] = Color3.fromRGB(255, 255, 255)}):Play()
+					TweenService:Create(toggletext, TweenInfo.new(0.3), {['TextColor3'] = Color3.fromRGB(226, 226, 226)}):Play()
+					inner_slider_toggle:TweenPosition(UDim2.new(0.552, 0,0.143, 0), "Out", "Sine", 0.3)
+					SettingToggle = true
+					SettingToggleDeb = true
+					task.wait(0.5)
+					SettingToggleDeb = false
+
+					pcall(Callback)
+
+				elseif not SettingToggleDeb then
+
+					TweenService:Create(toggle_setting_btn, TweenInfo.new(0.3), {['BackgroundTransparency'] = 1}):Play()
+					TweenService:Create(inner_slider_toggle, TweenInfo.new(0.3), {['BackgroundColor3'] = Color3.fromRGB(104, 104, 104)}):Play()
+					TweenService:Create(toggletext, TweenInfo.new(0.3), {['TextColor3'] = Color3.fromRGB(108, 108, 108)}):Play()
+					inner_slider_toggle:TweenPosition(UDim2.new(0.065, 0,0.143, 0), "Out", "Sine", 0.3)
+					SettingToggle = false
+					SettingToggleDeb = true
+					task.wait(0.5)
+					SettingToggleDeb = false
+
+					pcall(Callback)
+
+				end
+			end)
+
+		elseif Type == "TypingBox" then
+
+			local type_box = Instance.new("Frame")
+			type_box.BackgroundColor3 = Color3.new(1, 1, 1)
+			type_box.Position = UDim2.new(-2.79629636, 0, 0.274016559, 0)
+			type_box.Size = UDim2.new(0, 197, 0, 21)
+			type_box.Visible = true
+			type_box.BackgroundTransparency = 1
+			type_box.Name = "TypingBox"
+			type_box.Parent = ScriptHolder
+
+			local text_box = Instance.new("TextBox")
+			text_box.CursorPosition = -1
+			text_box.Font = Enum.Font.FredokaOne
+			text_box.PlaceholderText = "Type to enter"
+			text_box.Text = ""
+			text_box.TextColor3 = Color3.new(1, 1, 1)
+			text_box.TextScaled = true
+			text_box.TextSize = 14
+			text_box.TextWrapped = true
+			text_box.BackgroundColor3 = Color3.new(0.0588235, 0.239216, 0.435294)
+			text_box.BackgroundTransparency = 1
+			text_box.BorderColor3 = Color3.new(0, 0, 0)
+			text_box.BorderSizePixel = 0
+			text_box.Position = UDim2.new(0.65482235, 0, 0, 0)
+			text_box.Size = UDim2.new(0, 76, 0, 23)
+			text_box.Visible = true
+			text_box.Parent = type_box
+
+			local toggletext_2 = Instance.new("TextLabel")
+			toggletext_2.Font = Enum.Font.SourceSansBold
+			toggletext_2.Text = Name
+			toggletext_2.TextColor3 = Color3.new(0.423529, 0.423529, 0.423529)
+			toggletext_2.TextSize = 17
+			toggletext_2.TextXAlignment = Enum.TextXAlignment.Left
+			toggletext_2.BackgroundColor3 = Color3.new(1, 1, 1)
+			toggletext_2.BackgroundTransparency = 1
+			toggletext_2.Position = UDim2.new(-1.59958935, 0, 0.0221186094, 0)
+			toggletext_2.Size = UDim2.new(0, 137, 0, 21)
+			toggletext_2.Visible = true
+			toggletext_2.Name = "ToggleText"
+			toggletext_2.Parent = text_box
+
+			local uistroke_3 = Instance.new("UIStroke")
+			uistroke_3.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+			uistroke_3.Color = Color3.new(0.184314, 0.184314, 0.184314)
+			uistroke_3.Parent = text_box
+
+			local uicorner_6 = Instance.new("UICorner")
+			uicorner_6.CornerRadius = UDim.new(0.5, 0)
+			uicorner_6.Parent = text_box
+
+			text_box.FocusLost:Connect(function()
+				pcall(Callback)
+			end)
+
+		end
+	end
+end
