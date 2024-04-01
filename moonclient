@@ -1,4 +1,3 @@
-
 local UserInputService = game:GetService("UserInputService")
 
 function createStructure()
@@ -59,14 +58,14 @@ function createStructure()
 	uilist_layout.Parent = array_group
 
 	local tabs = Instance.new("Frame")
-	tabs.AnchorPoint = Vector2.new(0.5, 0.5)
 	tabs.BackgroundColor3 = Color3.new(1, 1, 1)
 	tabs.BackgroundTransparency = 1
+	tabs.AnchorPoint = Vector2.new(0.5, 0.5)
 	tabs.BorderColor3 = Color3.new(0, 0, 0)
 	tabs.BorderSizePixel = 0
-	tabs.Position = UDim2.new(0.215673983, 0, 0.100000001, 0)
-	tabs.Size = UDim2.new(0.401253909, 0, 0.238213405, 0)
-	tabs.Visible = true
+	tabs.Position = UDim2.new(0.45, 0, 0.34, 0)
+	tabs.Size = UDim2.new(0, 768, 0, 192)
+	tabs.Visible = false
 	tabs.Name = "Tabs"
 	tabs.ZIndex = 999
 	tabs.Parent = moonclient
@@ -83,7 +82,7 @@ function createStructure()
 	uilist_layout_2.Parent = tabs
 
 	local uiScaleTabs = Instance.new("UIScale")
-	uiScaleTabs.Scale = 1.1
+	uiScaleTabs.Scale = 0
 	uiScaleTabs.Parent = tabs
 
 	local moon = Instance.new("TextLabel")
@@ -201,12 +200,34 @@ function createStructure()
 	-- enable / disable ui --
 
 	local moonEnabled = false
+	local moonEnbDeb = false
 
 	local function disableTabs(enquiry)
 		if enquiry == false then
+
+			local Blur = Instance.new("BlurEffect", game.Lighting)
+			Blur.Size = 0
+			Blur.Name = "MOONCLIENTBLUR"
+
+			game:GetService("TweenService"):Create(Blur, TweenInfo.new(1), {['Size'] = 15}):Play()
+
 			tabs.Visible = true
+			game:GetService("TweenService"):Create(uiScaleTabs, TweenInfo.new(0.4), {['Scale'] = 1.1}):Play()
 		else
+
+			game:GetService("TweenService"):Create(uiScaleTabs, TweenInfo.new(0.4), {['Scale'] = 0}):Play()
+			task.wait(0.2)
+
 			tabs.Visible = false
+
+			spawn(function()
+				if game.Lighting:FindFirstChild("MOONCLIENTBLUR") then
+					local Blur = game.Lighting:FindFirstChild("MOONCLIENTBLUR")
+					game:GetService("TweenService"):Create(Blur, TweenInfo.new(1), {['Size'] = 0}):Play()
+					task.wait(1)
+					Blur:Destroy()
+				end
+			end)
 		end
 	end
 
@@ -215,12 +236,19 @@ function createStructure()
 		if Chatting then return end -- if player is typing in chat this function will not run
 
 		if input.KeyCode == Enum.KeyCode.RightAlt then -- if player pressed C then this function will run
-			if not moonEnabled then
-				disableTabs(true)
-				moonEnabled = true
-			else
-				disableTabs(false)
-				moonEnabled = false
+			if not moonEnbDeb then
+				moonEnbDeb = true
+
+				if not moonEnabled then
+					disableTabs(true)
+					moonEnabled = true
+				else
+					disableTabs(false)
+					moonEnabled = false
+				end
+
+				task.wait(0.6)
+				moonEnbDeb = false
 			end
 		end
 	end)
